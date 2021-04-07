@@ -195,10 +195,10 @@
 - expo install은 npm install과 거의 동일한 역할을 한다. 차이점은 사용중인 Expo SDK 버전과 호환되는 버전이 있는지 확인하고, 해당 버전의 라이브러리를 설치하는 과정이 추가되었다.
 
 ```javascript
-    //수정 전
+    //intall 수정 전
     expo install @react-native-community/async-storage
 
-    //수정 후
+    //install 수정 후
     expo install @react-native-async-storage/async-storage
 
     //import
@@ -213,6 +213,63 @@
             console.error(e);
         }
     }
+
+    //데이터 불러오기
+    const _loadTasks = async () => {
+        const loadedTasks = await AsyncStorage.getItem('tasks');
+        setTasks(JSON.parse(loadedTasks || {}));
+    };
 ```
 
 <br />
+
+### 🏃 AppLoading
+- AppLoading 컴포넌트는 특정 조건에서 로딩 화면이 유지되도록 하는 기능으로, 렌더링 하기 전에 처리해야 하는 작업을 수행하는 데 유용하게 사용된다.
+    1. startAsync: AppLoading 컴포넌트가 동작하는 동안 실행 될 함수
+    2. onFinish: startAsync가 완료되면 실행할 함수
+    3. onError: startAsync에서 오류가 발생하면 실행할 함수
+
+```javascript
+    //install
+    expo install expo-app-loading
+
+    //import
+    import AppLoading from 'expo-app-loading';
+
+    //AppLoading 예시
+    <AppLoading 
+        startAsync={_loadTasks}
+        onFinish={() => setIsReady(true)}
+        onError={console.error}
+    />
+```
+
+<br />
+
+### 🏃 app.json
+- 로딩 화면, 아이콘을 app.json에서 바꿀 수 있다.
+- 로딩 화면으로 사용 될 이미지의 크기는 다양한 기기에 대응하기 위해 1242 x 2436으로 준비하는 것이 좋다.
+- 로딩 화면에서 기기의 크기에 따라 공백이 생기는 경우, resizeMode의 값을 cover로 변경하거나, backgroundColor의 값을 변경하면 된다.
+- 아이콘으로 사용 될 이미지는 iOS의 경우 1024 x 1024 크기가 필요하고 안드로이드의 경우 512 x 512크기의 이미지가 필요하므로, 웬만하면 1024 x 1024 크기의 이미지를 사용하는게 좋다.
+
+```json
+{
+    "expo": {
+        //(...생략)
+        "icon": "./assets/splash.png",
+        "splash": {
+            "image": "./assets/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        //(...생략)
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/splash.png",
+                "backgroundColor": "#FFFFFF"
+            }
+        },
+        //(...생략)
+    }
+}
+```

@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Input from './components/Input';
 import Task from './components/Task';
 import {theme} from './theme';
+import AppLoading from 'expo-app-loading';
 
 const Container = styled.SafeAreaView`
     flex: 1;
@@ -33,6 +34,7 @@ export default function App() {
 
     const [newTask, setNewTask] = useState('');
     const [tasks, setTasks] = useState({});
+    const [isReady, setIsReady] = useState(false);
 
     const _saveTasks = async tasks => {
         try {
@@ -42,6 +44,11 @@ export default function App() {
             console.error(e);
         }
     }
+
+    const _loadTasks = async () => {
+        const loadedTasks = await AsyncStorage.getItem('tasks');
+        setTasks(JSON.parse(loadedTasks || {}));
+    };
 
     const _onBlur = () => {
         setNewTask('');
@@ -80,7 +87,7 @@ export default function App() {
         setNewTask(text);
     };
 
-    return (
+    return isReady ? (
         <ThemeProvider theme={theme}>
             <Container>
                 <StatusBar
@@ -110,5 +117,11 @@ export default function App() {
                 </List>
             </Container>
         </ThemeProvider>
+    ) : (
+        <AppLoading 
+            startAsync={_loadTasks}
+            onFinish={() => setIsReady(true)}
+            onError={console.error}
+        />
     )
 }
