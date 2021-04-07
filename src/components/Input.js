@@ -21,18 +21,18 @@ const Input = ({ placeholder, value, onChangeText, onSubmitEditing }) => {
     const width = useWindowDimensions().width;
 
     return (
-    <StyledInput 
-        width={width} 
-        placeholder={placeholder} 
-        maxLength={50}
-        autoCapitalize='none'
-        autoCorrect={false}
-        returnKeyType='done'
-        keyboardApperance='dark'
-        value={value}
-        onChangeText={onChangeText}
-        onSubmitEditing={onSubmitEditing}
-    />
+        <StyledInput 
+            width={width} 
+            placeholder={placeholder} 
+            maxLength={50}
+            autoCapitalize='none'
+            autoCorrect={false}
+            returnKeyType='done'
+            keyboardApperance='dark'
+            value={value}
+            onChangeText={onChangeText}
+            onSubmitEditing={onSubmitEditing}
+        />
     );
 };
 
