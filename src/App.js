@@ -1,6 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 import styled, { ThemeProvider } from 'styled-components/native';
+import Input from './components/Input';
 import {theme} from './theme';
 
 const Container = styled.SafeAreaView`
@@ -28,6 +29,7 @@ export default function App() {
                     backgroundColor={theme.background}
                 />
                 <Title>TODO List</Title>
+                <Input placeholder="+ Add a Task" />
             </Container>
         </ThemeProvider>
     )
