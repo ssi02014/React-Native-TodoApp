@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StatusBar, useWindowDimensions } from 'react-native';
 import styled, { ThemeProvider } from 'styled-components/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Input from './components/Input';
 import Task from './components/Task';
 import {theme} from './theme';
@@ -31,33 +32,20 @@ export default function App() {
     const width = useWindowDimensions().width;
 
     const [newTask, setNewTask] = useState('');
-    const [tasks, setTasks] = useState({
-        '1' : {
-            id: 1,
-            text: 'Minjae',
-            completed: true,
-        },
-        '2' : {
-            id: 2,
-            text: 'Wooahan',
-            completed: false,
-        },
-        '3' : {
-            id: 3,
-            text: 'React-Native',
-            completed: false,
-        },
-        '4' : {
-            id: 4,
-            text: 'TodoApp',
-            completed: false,
-        },
-        '5' : {
-            id: 5,
-            text: 'Used Market',
-            completed: false,
-        },
-    })
+    const [tasks, setTasks] = useState({});
+
+    const _saveTasks = async tasks => {
+        try {
+            await AsyncStorage.setItem('tasks', JSON.stringify(tasks));
+            setTasks(tasks);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    const _onBlur = () => {
+        setNewTask('');
+    }
 
     const _addTask = () => {
         const ID = Date.now().toString();
@@ -66,21 +54,27 @@ export default function App() {
         }
         alert(`Add: ${newTask}`);
         setNewTask('');
-        setTasks({...tasks, ...newTaskObject});
+        _saveTasks({...tasks, ...newTaskObject});
     };
 
     const _deleteTask = id => {
         // Object.assign메소드는 열거할 수 있는 하나 이상의 출처 객체로부터 대상 객체로 속성을 복사할 때 사용
         const currentTasks = Object.assign({}, tasks);
         delete currentTasks[id];
-        setTasks(currentTasks);
+        _saveTasks(currentTasks);
     };
 
     const _toggleTask = id => {
         const currentTasks = Object.assign({}, tasks); 
         currentTasks[id]['completed'] = !currentTasks[id]['completed'];
-        setTasks(currentTasks);
+        _saveTasks(currentTasks);
     };
+
+    const _updateTask = item => {
+        const currentTasks = Object.assign({}, tasks);
+        currentTasks[item.id] = item;
+        _saveTasks(currentTasks);
+    }
 
     const _handleTextChange = text => {
         setNewTask(text);
@@ -101,6 +95,7 @@ export default function App() {
                     value={newTask}
                     onChangeText={_handleTextChange}
                     onSubmitEditing={_addTask}
+                    onBlur={_onBlur}
                 />
                 <List width={width}>
                     {Object.values(tasks).reverse().map(item => (
@@ -109,6 +104,7 @@ export default function App() {
                             key={item.id} 
                             deleteTask={_deleteTask}
                             toggleTask={_toggleTask}
+                            updateTask={_updateTask}
                         />
                     ))}
                 </List>
