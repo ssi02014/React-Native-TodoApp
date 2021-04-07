@@ -69,6 +69,12 @@ export default function App() {
         setTasks({...tasks, ...newTaskObject});
     };
 
+    const _deleteTask = id => {
+        const currentTasks = Object.assign({}, tasks);
+        delete currentTasks[id];
+        setTasks(currentTasks);
+    }
+
     const _handleTextChange = text => {
         setNewTask(text);
     };
@@ -91,7 +97,11 @@ export default function App() {
                 />
                 <List width={width}>
                     {Object.values(tasks).reverse().map(item => (
-                        <Task text={item.text} key={item.id} />
+                        <Task 
+                            item={item} 
+                            key={item.id} 
+                            deleteTask={_deleteTask}
+                        />
                     ))}
                 </List>
             </Container>
