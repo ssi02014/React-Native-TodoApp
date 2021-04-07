@@ -87,9 +87,24 @@
 
 ## 👨🏻‍💻 Google Material Design
 🔖 https://material.io/resources/icons/?style=baseline
+
+![2](https://user-images.githubusercontent.com/64779472/113828270-2b8ada80-97bf-11eb-8341-724f9b55296f.PNG)
+
+- 프로젝트에 사용할 아이콘 이미지를 다운받을 수 있습니다.
+- iOS로 다운받으면 x2, x3 사이지의 아이콘이 함께 있습니다.
+- 파일명을 동일한 이름을 사용하면서 @2x, @3x를 붙이면 리액트 네이티브에서 화면 사이즈에 알맞은 크기의 이미지를 자동으로 불러와 사용할 수 있습니다.
+
+<br />
+
+## 👨🏻‍💻 Image Component
+- Image Component는 리액트 네이티브에서 제공하는 컴포넌트이며, 프로젝트에 있는 이미지 파일의 경로나 URL을 이용하여 원격에 있는 이미지를 렌더링할 수 있습니다.
+-
+
 ```javascript
 ```
+
 <br />
+
 ### 🏃 
 - 
 
