@@ -4,7 +4,9 @@
 <br />
 
 ## 🎥 HomePage View
-![3](https://user-images.githubusercontent.com/64779472/113882061-f3ec5480-97f7-11eb-815b-79c2dbf8b39b.PNG)
+<p align='center'>
+    <img src='https://user-images.githubusercontent.com/64779472/113882061-f3ec5480-97f7-11eb-815b-79c2dbf8b39b.PNG' width="500" height="500">
+</p>
 
 <br />
 
