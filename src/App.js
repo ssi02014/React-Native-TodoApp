@@ -70,10 +70,17 @@ export default function App() {
     };
 
     const _deleteTask = id => {
+        // Object.assign메소드는 열거할 수 있는 하나 이상의 출처 객체로부터 대상 객체로 속성을 복사할 때 사용
         const currentTasks = Object.assign({}, tasks);
         delete currentTasks[id];
         setTasks(currentTasks);
-    }
+    };
+
+    const _toggleTask = id => {
+        const currentTasks = Object.assign({}, tasks); 
+        currentTasks[id]['completed'] = !currentTasks[id]['completed'];
+        setTasks(currentTasks);
+    };
 
     const _handleTextChange = text => {
         setNewTask(text);
@@ -101,6 +108,7 @@ export default function App() {
                             item={item} 
                             key={item.id} 
                             deleteTask={_deleteTask}
+                            toggleTask={_toggleTask}
                         />
                     ))}
                 </List>

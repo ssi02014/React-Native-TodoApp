@@ -138,8 +138,42 @@
 
 <br />
 
-
-### 🏃 
-- 
+## 👨🏻‍💻 CRUD 기능 구현
+### 🏃 _addTask
+```javascript
+    const _addTask = () => {
+        const ID = Date.now().toString();
+        const newTaskObject = {
+            [ID]: { id: ID, text: newTask, completed: false},
+        }
+        alert(`Add: ${newTask}`);
+        setNewTask('');
+        setTasks({...tasks, ...newTaskObject});
+    };
+```
 
 <br />
+
+### 🏃 _deleteTask
+```javascript
+    const _deleteTask = id => {
+        // Object.assign 메소드는 열거할 수 있는 하나 이상의 출처 객체로부터 대상 객체로 속성을 복사할 때 사용
+        const currentTasks = Object.assign({}, tasks);
+        delete currentTasks[id];
+        setTasks(currentTasks);
+    };
+```
+
+<br />
+
+### 🏃 _toggleTask
+```javascript
+    const _toggleTask = id => {
+        const currentTasks = Object.assign({}, tasks); 
+        currentTasks[id]['completed'] = !currentTasks[id]['completed'];
+        setTasks(currentTasks);
+    };
+```
+
+<br />
+
