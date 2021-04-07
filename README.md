@@ -3,9 +3,16 @@
 
 <br />
 
+## 🎥 HomePage View
+![3](https://user-images.githubusercontent.com/64779472/113882061-f3ec5480-97f7-11eb-815b-79c2dbf8b39b.PNG)
+
+<br />
+
 ## 👨🏻‍💻 기술 스텍
 1. React-Native
-2. Styled-Components
+2. Styled-Components - styling
+3. AsyncStorage
+4. Google Material Design - icon
 
 <br />
  
