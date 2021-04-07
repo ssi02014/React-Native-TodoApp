@@ -1,4 +1,5 @@
 import React from 'react';
+import {Text} from 'react-native';
 import styled, { ThemeProvider } from 'styled-components/native';
 import {theme} from './theme';
 
@@ -13,7 +14,7 @@ export default function App() {
     return (
         <ThemeProvider theme={theme}>
             <Container>
-
+                <Text>hi</Text>
             </Container>
         </ThemeProvider>
     )
