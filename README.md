@@ -5,7 +5,7 @@
 
 ## 🎥 HomePage View
 <p align='center'>
-    <img src='https://user-images.githubusercontent.com/64779472/113882061-f3ec5480-97f7-11eb-815b-79c2dbf8b39b.PNG' width="500" height="700">
+    <img src='https://user-images.githubusercontent.com/64779472/113882665-76751400-97f8-11eb-8878-21d088c49af8.PNG' width="500" height="700">
 </p>
 
 <br />
