@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'react-native';
 import styled, { ThemeProvider } from 'styled-components/native';
+import IconButton from './components/IconButton';
 import Input from './components/Input';
+import { images } from './Images';
 import {theme} from './theme';
 
 const Container = styled.SafeAreaView`
@@ -39,13 +41,20 @@ export default function App() {
                     barStyle="light-content"
                     backgroundColor={theme.background}
                 />
+
                 <Title>TODO List</Title>
+                
                 <Input 
                     placeholder="+ Add a Task"
                     value={newTask}
                     onChangeText={_handleTextChange}
                     onSubmitEditing={_addTask}
                 />
+
+                <IconButton type={images.uncompleted} />
+                <IconButton type={images.completed} />
+                <IconButton type={images.delete} />
+                <IconButton type={images.update} />
             </Container>
         </ThemeProvider>
     )

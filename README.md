@@ -96,11 +96,31 @@
 
 <br />
 
-## 👨🏻‍💻 Image Component
+## 👨🏻‍💻 Image, IconButton Component
 - Image Component는 리액트 네이티브에서 제공하는 컴포넌트이며, 프로젝트에 있는 이미지 파일의 경로나 URL을 이용하여 원격에 있는 이미지를 렌더링할 수 있습니다.
--
+- tint-color를 통해 아이콘에 색깔을 줄 수 있다.
 
 ```javascript
+    const Icon = styled.Image`
+        tint-color: ${({theme}) => theme.text};
+        width: 30px;
+        height: 30px;
+        margin: 10px;
+    `;
+
+    const IconButton = ({ type, onPressOut }) => {
+        return (
+            <TouchableOpacity onPressOut={onPressOut}>
+                <Icon source={type} />
+            </TouchableOpacity>
+        );
+    };
+
+    IconButton.propTypes = {
+        // PropTypes.oneOf: 열거형(enum)으로 처리하여 prop가 특정 값들로 제한되도록 할 수 있습니다.
+        type: PropTypes.oneOf(Object.values(images)).isRequired,
+        onPressOut: PropTypes.func,
+    }
 ```
 
 <br />
