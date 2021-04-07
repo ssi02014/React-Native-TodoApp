@@ -125,6 +125,20 @@
 
 <br />
 
+## 👨🏻‍💻 ThemeProvider
+- 모든 컴포넌트를 감싸는 최상위 컴포넌트로 ThemeProvider 컴포넌트를 사용하며, ThemeProvider 컴포넌트의 theme 속성에 앞에서 정의한 색을 설정하면, ThemeProvider 컴포넌트의 자식 컴포넌트에서는 스타일드 컴포넌트를 이용할 때, props로 theme를 전달받아 이용할 수 있다.
+
+```javascript
+    <ThemeProvider theme={theme}>
+        <Container>
+            (...)
+        </Container>
+    </ThemeProvider>
+```
+
+<br />
+
+
 ### 🏃 
 - 
 

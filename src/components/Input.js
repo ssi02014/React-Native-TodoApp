@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
-import { theme } from '../theme';
 import { useWindowDimensions } from 'react-native';
 
 const StyledInput = styled.TextInput.attrs(({ theme }) =>({

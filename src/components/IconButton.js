@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { images } from '../Images';
 
 const Icon = styled.Image`
-  tint-color: ${({theme}) => theme.text};
+  tint-color: ${({ theme }) => theme.text};
   width: 30px;
   height: 30px;
   margin: 10px;
