@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { StatusBar, useWindowDimensions } from 'react-native';
 import styled, { ThemeProvider } from 'styled-components/native';
-import IconButton from './components/IconButton';
 import Input from './components/Input';
 import Task from './components/Task';
-import { images } from './Images';
 import {theme} from './theme';
 
 const Container = styled.SafeAreaView`
@@ -33,10 +31,42 @@ export default function App() {
     const width = useWindowDimensions().width;
 
     const [newTask, setNewTask] = useState('');
+    const [tasks, setTasks] = useState({
+        '1' : {
+            id: 1,
+            text: 'Minjae',
+            completed: true,
+        },
+        '2' : {
+            id: 2,
+            text: 'Wooahan',
+            completed: false,
+        },
+        '3' : {
+            id: 3,
+            text: 'React-Native',
+            completed: false,
+        },
+        '4' : {
+            id: 4,
+            text: 'TodoApp',
+            completed: false,
+        },
+        '5' : {
+            id: 5,
+            text: 'Used Market',
+            completed: false,
+        },
+    })
 
     const _addTask = () => {
+        const ID = Date.now().toString();
+        const newTaskObject = {
+            [ID]: { id: ID, text: newTask, completed: false},
+        }
         alert(`Add: ${newTask}`);
         setNewTask('');
+        setTasks({...tasks, ...newTaskObject});
     };
 
     const _handleTextChange = text => {
@@ -60,17 +90,9 @@ export default function App() {
                     onSubmitEditing={_addTask}
                 />
                 <List width={width}>
-                    <Task text="Minjae" />
-                    <Task text="React Native" />
-                    <Task text="React Native TodoApp" />
-                    <Task text="Edit Todo Item" />
-                    <Task text="Edit Todo Item" />
-                    <Task text="Edit Todo Item" />
-                    <Task text="Edit Todo Item" />
-                    <Task text="Edit Todo Item" />
-                    <Task text="Edit Todo Item" />
-                    <Task text="Edit Todo Item" />
-                    <Task text="Edit Todo Item" />
+                    {Object.values(tasks).reverse().map(item => (
+                        <Task text={item.text} key={item.id} />
+                    ))}
                 </List>
             </Container>
         </ThemeProvider>
