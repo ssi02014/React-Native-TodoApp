@@ -177,3 +177,42 @@
 
 <br />
 
+### 🏃 _updateTask
+```javascript
+    const _updateTask = item => {
+        const currentTasks = Object.assign({}, tasks);
+        currentTasks[item.id] = item;
+        setTasks(currentTasks);
+    }
+```
+
+<br />
+
+## 👨🏻‍💻 부가 기능
+### 🏃 AsyncStorage
+- 리액트 네이티브에서는 AsyncStorage를 이용해 로컬에 데이터를 저장하고 불러오는 기능을 구현할 수 있다.
+- AsyncStorage는 비동기로 동작하며 문자열로 된 키-값(Key-Value) 형태의 데이터를 기기에 저장하고 불러올 수 있는 기능을 제공한다.
+- expo install은 npm install과 거의 동일한 역할을 한다. 차이점은 사용중인 Expo SDK 버전과 호환되는 버전이 있는지 확인하고, 해당 버전의 라이브러리를 설치하는 과정이 추가되었다.
+
+```javascript
+    //수정 전
+    expo install @react-native-community/async-storage
+
+    //수정 후
+    expo install @react-native-async-storage/async-storage
+
+    //import
+    import AsyncStorage from '@react-native-async-storage/async-storage';
+
+    //데이터 담기
+    const _saveTasks = async tasks => {
+        try {
+            await AsyncStorage.setItem('tasks', JSON.stringify(tasks));
+            setTasks(tasks);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+```
+
+<br />
